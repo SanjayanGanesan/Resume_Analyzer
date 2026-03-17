@@ -1,0 +1,80 @@
+.desktop-padding {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.result-grid-2 {
+  grid-template-columns: 50% 50%;
+}
+
+/* responsiveness */
+@media (max-width: 900px) {
+  .card-container {
+    padding: 35px;
+  }
+  .upload-box {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  .result-grid {
+    grid-template-columns: 100%;
+  }
+  .result-grid-2 {
+    grid-template-columns: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .result-grid {
+    grid-template-columns: 100%;
+  }
+  .card-container {
+    padding: 20px;
+  }
+  .upload-box {
+    padding: 40px 20px;
+  }
+  .job-textarea {
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-container {
+    padding: 22px;
+  }
+  .upload-box {
+    padding-top: 45px;
+    padding-bottom: 45px;
+  }
+  .job-textarea {
+    height: 180px;
+  }
+}
+
+@media (max-width: 400px) {
+  .card-container {
+    padding: 15px;
+  }
+  .upload-box {
+    padding: 30px 15px;
+  }
+}
+
+@media (max-width: 360px) {
+  .card-container {
+    padding: 18px;
+  }
+  .upload-box {
+    padding-top: 35px;
+    padding-bottom: 35px;
+  }
+}
+
+@media (max-width: 250px) {
+  .card-container {
+    padding: 14px;
+  }
+  .job-textarea {
+    height: 150px;
+  }
+}
