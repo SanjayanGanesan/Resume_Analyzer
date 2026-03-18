@@ -1,4 +1,6 @@
 const { extractTextFromFile } = require("../services/resumeparser.services");
+const { extractSkills } = require("../services/skillsExtractor.services");
+const { matchingServices } = require("../services/matching.services");
 
 async function analyze(req, res) {
   const resumeFile = req.file;
@@ -19,17 +21,26 @@ async function analyze(req, res) {
 
     const extractedFile = await extractTextFromFile(resumeFile);
 
+    if (extractedFile) {
+      const ResumeSkills = extractSkills(extractedFile);
+      const JobSkills = extractSkills(jobDescription);
+
+      const MatchingSkills = matchingServices(ResumeSkills,JobSkills)
+
+      return res.status(200).json({
+        status: 1,
+        message: "Resume received successfully",
+        resume: resumeFile.originalname,
+        jobDescription,
+        jobRole,
+        resumeSkills: ResumeSkills,
+        extractedText: extractedFile.substring(0, 15000),
+        ...MatchingSkills,
+      });
+    }
+
     //console.timeEnd("Parsing Time");
     //const extractedFile = await extractTextFromFile(resumeFile);
-
-    return res.status(200).json({
-      status: 1,
-      message: "Resume received successfully",
-      resume: resumeFile.originalname,
-      jobDescription,
-      jobRole,
-      extractedText: extractedFile.substring(0, 15000),
-    });
   } catch (error) {
     return res.status(500).json({
       status: 0,
